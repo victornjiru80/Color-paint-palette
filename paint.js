@@ -1,9 +1,9 @@
-var arr_touches = []; 
-var canvas; 
-var ctx; 
-var down = false; //mouse is pressed 
-var color = 'black'; //default drawing color 
-var width = 5; // drawing width 
+let arr_touches = []; 
+let canvas; 
+let ctx; 
+let down = false; //mouse is pressed 
+let color = 'black'; //default drawing color 
+let width = 5; // drawing width 
  
  
 //calling window.onload to make sure the HTML is loaded 
@@ -24,8 +24,9 @@ window.onload = function() {
     canvas.addEventListener("touchleave", handleEnd, false); 
     canvas.addEventListener("touchmove", handleTouchMove, false); 
 }; 
-function handleMove(e) 
-{ 
+
+
+function handleMove(e){ 
     xPos = e.clientX-canvas.offsetLeft; 
     yPos = e.clientY-canvas.offsetTop; 
     if(down == true) 
@@ -35,18 +36,21 @@ function handleMove(e)
         ctx.stroke(); 
     } 
 } 
-function handleDown()  
-{ 
+
+
+function handleDown() { 
     down = true; 
     ctx.beginPath(); 
     ctx.moveTo(xPos, yPos); 
 } 
-function handleUp()  
-{ 
+
+
+function handleUp()  { 
     down = false; 
 } 
-function handleStart(evt)  
-{ 
+
+
+function handleStart(evt)  { 
     var touches = evt.changedTouches; 
     for(var i = 0; i < touches.length; i++)  
     { 
@@ -60,8 +64,9 @@ function handleStart(evt)
         } 
     } 
 } 
-function handleTouchMove(evt)  
-{ 
+
+
+function handleTouchMove(evt)  { 
     var touches = evt.changedTouches; 
     var offset = findPos(canvas); 
     for (var i = 0; i < touches.length; i++)  
@@ -83,8 +88,10 @@ function handleTouchMove(evt)
         } 
     } 
 } 
-function handleEnd(evt)  
-{ 
+
+
+
+function handleEnd(evt) { 
     var touches = evt.changedTouches; 
     var offset = findPos(canvas); 
     for (var i = 0; i < touches.length; i++)  
@@ -105,8 +112,9 @@ function handleEnd(evt)
         } 
     } 
 } 
-function handleCancel(evt)  
-{ 
+
+
+function handleCancel(evt) { 
     evt.preventDefault(); 
     var touches = evt.changedTouches; 
    
@@ -114,12 +122,14 @@ function handleCancel(evt)
         arr_touches.splice(i, 1); 
     } 
 } 
+
 function copyTouch(touch)  
 { 
     return {identifier: touch.identifier,clientX: touch.clientX,clientY: touch.clientY}; 
 } 
-function ongoingTouchIndexById(idToFind)  
-{ 
+
+
+function ongoingTouchIndexById(idToFind)  { 
     for (var i = 0; i < arr_touches.length; i++) { 
         var id = arr_touches[i].identifier; 
         if (id == idToFind) { 
@@ -128,16 +138,18 @@ function ongoingTouchIndexById(idToFind)
     } 
     return -1; 
 } 
-function changeColor(new_color)  
-{ 
+
+function changeColor(new_color)  { 
     color = new_color; 
 } 
-function clearCanvas()  
-{ 
+
+
+
+function clearCanvas()  { 
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
 } 
-function isValidTouch(touch)  
-{ 
+
+function isValidTouch(touch)  { 
     var curleft = 0, curtop = 0; 
     var offset = 0; 
      
@@ -161,8 +173,10 @@ function isValidTouch(touch)
         return false; 
     } 
 } 
-function findPos(obj)  
-{ 
+
+
+
+function findPos(obj)  { 
     var curleft = 0, curtop = 0; 
     if (obj.offsetParent)  
     { 
