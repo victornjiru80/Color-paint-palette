@@ -51,8 +51,8 @@ function handleUp()  {
 
 
 function handleStart(evt)  { 
-    var touches = evt.changedTouches; 
-    for(var i = 0; i < touches.length; i++)  
+    let touches = evt.changedTouches; 
+    for(let i = 0; i < touches.length; i++)  
     { 
         if(isValidTouch(touches[i]))  
         { 
@@ -67,14 +67,14 @@ function handleStart(evt)  {
 
 
 function handleTouchMove(evt)  { 
-    var touches = evt.changedTouches; 
-    var offset = findPos(canvas); 
-    for (var i = 0; i < touches.length; i++)  
+    let touches = evt.changedTouches; 
+    let offset = findPos(canvas); 
+    for (let i = 0; i < touches.length; i++)  
     { 
         if(isValidTouch(touches[i]))  
         { 
             evt.preventDefault(); 
-            var idx = ongoingTouchIndexById(touches[i].identifier); 
+            let idx = ongoingTouchIndexById(touches[i].identifier); 
             if (idx >= 0)  
             { 
                 ctx.beginPath(); 
@@ -92,14 +92,14 @@ function handleTouchMove(evt)  {
 
 
 function handleEnd(evt) { 
-    var touches = evt.changedTouches; 
-    var offset = findPos(canvas); 
-    for (var i = 0; i < touches.length; i++)  
+    let touches = evt.changedTouches; 
+    let offset = findPos(canvas); 
+    for (let i = 0; i < touches.length; i++)  
     { 
         if(isValidTouch(touches[i]))  
         { 
             evt.preventDefault(); 
-            var idx = ongoingTouchIndexById(touches[i].identifier); 
+            let idx = ongoingTouchIndexById(touches[i].identifier); 
             if (idx >= 0)  
             { 
                 ctx.lineWidth = 4; 
@@ -116,9 +116,9 @@ function handleEnd(evt) {
 
 function handleCancel(evt) { 
     evt.preventDefault(); 
-    var touches = evt.changedTouches; 
+    let touches = evt.changedTouches; 
    
-    for (var i = 0; i < touches.length; i++) { 
+    for (let i = 0; i < touches.length; i++) { 
         arr_touches.splice(i, 1); 
     } 
 } 
@@ -130,8 +130,8 @@ function copyTouch(touch)
 
 
 function ongoingTouchIndexById(idToFind)  { 
-    for (var i = 0; i < arr_touches.length; i++) { 
-        var id = arr_touches[i].identifier; 
+    for (let i = 0; i < arr_touches.length; i++) { 
+        let id = arr_touches[i].identifier; 
         if (id == idToFind) { 
             return i; 
         } 
@@ -150,8 +150,8 @@ function clearCanvas()  {
 } 
 
 function isValidTouch(touch)  { 
-    var curleft = 0, curtop = 0; 
-    var offset = 0; 
+    let curleft = 0, curtop = 0; 
+    let offset = 0; 
      
     if (canvas.offsetParent) { 
         do { 
@@ -177,7 +177,7 @@ function isValidTouch(touch)  {
 
 
 function findPos(obj)  { 
-    var curleft = 0, curtop = 0; 
+    let curleft = 0, curtop = 0; 
     if (obj.offsetParent)  
     { 
         do { 
