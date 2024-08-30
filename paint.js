@@ -29,8 +29,8 @@ window.onload = function() {
 function handleMove(e){ 
     xPos = e.clientX-canvas.offsetLeft; 
     yPos = e.clientY-canvas.offsetTop; 
-    if(down == true) 
-    { 
+ 
+    if(down == true) { 
         ctx.lineTo(xPos,yPos); //create a line from old point to new one 
         ctx.strokeStyle = color; 
         ctx.stroke(); 
@@ -52,10 +52,9 @@ function handleUp()  {
 
 function handleStart(evt)  { 
     let touches = evt.changedTouches; 
-    for(let i = 0; i < touches.length; i++)  
-    { 
-        if(isValidTouch(touches[i]))  
-        { 
+ 
+    for(let i = 0; i < touches.length; i++) { 
+        if(isValidTouch(touches[i])) { 
             evt.preventDefault(); 
             arr_touches.push(copyTouch(touches[i])); 
             ctx.beginPath(); 
@@ -69,14 +68,15 @@ function handleStart(evt)  {
 function handleTouchMove(evt)  { 
     let touches = evt.changedTouches; 
     let offset = findPos(canvas); 
-    for (let i = 0; i < touches.length; i++)  
-    { 
-        if(isValidTouch(touches[i]))  
-        { 
+ 
+    for (let i = 0; i < touches.length; i++) { 
+     
+        if(isValidTouch(touches[i])){ 
             evt.preventDefault(); 
+         
             let idx = ongoingTouchIndexById(touches[i].identifier); 
-            if (idx >= 0)  
-            { 
+         
+            if (idx >= 0) { 
                 ctx.beginPath(); 
                 ctx.moveTo(arr_touches[idx].clientX-offset.x, arr_touches[idx].clientY-offset.y); 
                 ctx.lineTo(touches[i].clientX-offset.x, touches[i].clientY-offset.y); 
@@ -94,14 +94,14 @@ function handleTouchMove(evt)  {
 function handleEnd(evt) { 
     let touches = evt.changedTouches; 
     let offset = findPos(canvas); 
-    for (let i = 0; i < touches.length; i++)  
-    { 
-        if(isValidTouch(touches[i]))  
-        { 
+ 
+    for (let i = 0; i < touches.length; i++) { 
+     
+        if(isValidTouch(touches[i])) { 
             evt.preventDefault(); 
             let idx = ongoingTouchIndexById(touches[i].identifier); 
-            if (idx >= 0)  
-            { 
+         
+            if (idx >= 0) { 
                 ctx.lineWidth = 4; 
                 ctx.fillStyle = color; 
                 ctx.beginPath(); 
@@ -123,13 +123,12 @@ function handleCancel(evt) {
     } 
 } 
 
-function copyTouch(touch)  
-{ 
+function copyTouch(touch) { 
     return {identifier: touch.identifier,clientX: touch.clientX,clientY: touch.clientY}; 
 } 
 
 
-function ongoingTouchIndexById(idToFind)  { 
+function ongoingTouchIndexById(idToFind) { 
     for (let i = 0; i < arr_touches.length; i++) { 
         let id = arr_touches[i].identifier; 
         if (id == idToFind) { 
@@ -167,9 +166,8 @@ function isValidTouch(touch)  {
                 touch.clientY-offset.y >0 && 
                     touch.clientY-offset.y < parseFloat(canvas.height)) { 
         return true; 
-    } 
-    else  
-    { 
+     
+    }  else  { 
         return false; 
     } 
 } 
@@ -178,8 +176,8 @@ function isValidTouch(touch)  {
 
 function findPos(obj)  { 
     let curleft = 0, curtop = 0; 
-    if (obj.offsetParent)  
-    { 
+ 
+    if (obj.offsetParent) { 
         do { 
             curleft += obj.offsetLeft; 
             curtop += obj.offsetTop; 
